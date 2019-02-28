@@ -8,7 +8,7 @@
     android:weightSum="10"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".activity.LoginActivity">
 
 
     <TextView
@@ -39,7 +39,7 @@
             android:gravity="center"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@drawable/backgound_round">
+            android:background="@drawable/backgound_round_fifty">
 
           <EditText
               android:id="@+id/username_login"
