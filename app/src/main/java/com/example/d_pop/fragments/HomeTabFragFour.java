@@ -32,7 +32,7 @@ public class HomeTabFragFour extends Fragment implements AdapterView.OnItemSelec
 
     private Spinner spinner = null;
     private ProjectBaseAdapter mProjectBaseAdapter;
-    private ArrayList<ProjectBaseModel> mProjectBaseModelArraList;
+    private ArrayList<ProjectBaseModel> mProjectBaseModelArrayList;
     private RecyclerView mRecyclerView;
 
     @Nullable
@@ -53,18 +53,16 @@ public class HomeTabFragFour extends Fragment implements AdapterView.OnItemSelec
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
         spinner.setOnItemSelectedListener(this);
-        mProjectBaseModelArraList = new ArrayList<>();
+        mProjectBaseModelArrayList = new ArrayList<>();
         mRecyclerView = view.findViewById(R.id.project_recyclerview);
-
-
 //        GetAPIServices service = RetrofitAPIClient.getRetrofitInstance().create(GetAPIServices.class);
 //        Call<ArrayList<ProjectBaseModel>> call = service.getAllProjects();
 //        call.enqueue(new Callback<ArrayList<ProjectBaseModel>>() {
 //            @Override
 //            public void onResponse(Call<ArrayList<ProjectBaseModel>> call, Response<ArrayList<ProjectBaseModel>> response) {
 //                Log.i("Projects", "onResponse: " + response.body());
-//                mProjectBaseModelArraList = response.body();
-//                mProjectBaseAdapter = new ProjectBaseAdapter(mProjectBaseModelArraList, getContext());
+//                mProjectBaseModelArrayList = response.body();
+//                mProjectBaseAdapter = new ProjectBaseAdapter(mProjectBaseModelArrayList, getContext());
 //                mRecyclerView.setAdapter(mProjectBaseAdapter);
 //                mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 //
@@ -76,38 +74,61 @@ public class HomeTabFragFour extends Fragment implements AdapterView.OnItemSelec
 //            }
 //        });
 
-        mProjectBaseModelArraList.add(new ProjectBaseModel("Department App",
-                "Owned By: Gaurav & Lokesh", "27/02/19",
-                "This is the short description of the project.",75, true, "Android"));
-        mProjectBaseModelArraList.add(new ProjectBaseModel("Emotion Calculator",
-                "Owned By: Gaurav", "27/02/19",
-                "This is the short description of the project.",50, true, "Android"));
-        mProjectBaseModelArraList.add(new ProjectBaseModel("Traffic Manager",
-                "Owned By: Lokesh", "27/02/19",
-                "This is the short description of the project.",21, true, "Android"));
-        mProjectBaseModelArraList.add(new ProjectBaseModel("Music App",
-                "Owned By: Gaurav & Lokesh", "27/02/19",
-                "This is the short description of the project.",10, true, "Android"));
-        mProjectBaseModelArraList.add(new ProjectBaseModel("Department App",
-                "Owned By: Gaurav & Lokesh", "27/02/19",
-                "This is the short description of the project.",95, true, "Android"));
-        mProjectBaseModelArraList.add(new ProjectBaseModel("Department App",
-                "Owned By: Gaurav & Lokesh", "27/02/19",
-                "This is the short description of the project.",75, true, "Android"));
-
-        mProjectBaseAdapter = new ProjectBaseAdapter(mProjectBaseModelArraList, getContext());
-                mRecyclerView.setAdapter(mProjectBaseAdapter);
-                mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//        mProjectBaseModelArrayList.add(new ProjectBaseModel("Department App",
+//                "Owned By: Gaurav & Lokesh", "27/02/19",
+//                "This is the short description of the project.",75, true, "Android"));
+//        mProjectBaseModelArrayList.add(new ProjectBaseModel("Emotion Calculator",
+//                "Owned By: Gaurav", "27/02/19",
+//                "This is the short description of the project.",50, true, "Android"));
+//        mProjectBaseModelArrayList.add(new ProjectBaseModel("Traffic Manager",
+//                "Owned By: Lokesh", "27/02/19",
+//                "This is the short description of the project.",21, true, "Android"));
+//        mProjectBaseModelArrayList.add(new ProjectBaseModel("Music App",
+//                "Owned By: Gaurav & Lokesh", "27/02/19",
+//                "This is the short description of the project.",10, true, "Android"));
+//        mProjectBaseModelArrayList.add(new ProjectBaseModel("Department App",
+//                "Owned By: Gaurav & Lokesh", "27/02/19",
+//                "This is the short description of the project.",95, true, "Android"));
+//        mProjectBaseModelArrayList.add(new ProjectBaseModel("Department App",
+//                "Owned By: Gaurav & Lokesh", "27/02/19",
+//                "This is the short description of the project.",75, true, "Android"));
+//
+//        mProjectBaseAdapter = new ProjectBaseAdapter(mProjectBaseModelArrayList, getContext());
+//                mRecyclerView.setAdapter(mProjectBaseAdapter);
+//                mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String item = parent.getItemAtPosition(position).toString();
+        getAllProjects(item);
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+    private void getAllProjects(String item) {
+        GetAPIServices service = RetrofitAPIClient.getRetrofitInstance().create(GetAPIServices.class);
+        Call<ArrayList<ProjectBaseModel>> call = service.getAllProjects(item);
+        call.enqueue(new Callback<ArrayList<ProjectBaseModel>>() {
+            @Override
+            public void onResponse(Call<ArrayList<ProjectBaseModel>> call, Response<ArrayList<ProjectBaseModel>> response) {
+                Log.i("Projects", "onResponse: " + response.body());
+                mProjectBaseModelArrayList = response.body();
+                mProjectBaseAdapter = new ProjectBaseAdapter(mProjectBaseModelArrayList, getContext());
+                mRecyclerView.setAdapter(mProjectBaseAdapter);
+                mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<ProjectBaseModel>> call, Throwable t) {
+                Toast.makeText(getContext(), "Retrofit Failure", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 }
