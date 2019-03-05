@@ -26,13 +26,10 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Toast.makeText(this, "I am in Home Act.", Toast.LENGTH_SHORT).show();
         init();
     }
 
     private void init() {
-//        mActionBar = getS
-
 
         viewPager = findViewById(R.id.home_viewpager);
         tabLayout = findViewById(R.id.tabLayout);

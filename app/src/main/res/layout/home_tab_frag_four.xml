@@ -23,10 +23,29 @@
        android:spinnerMode="dialog">
    </Spinner>
 
-   <android.support.v7.widget.RecyclerView
-       android:id="@+id/project_recyclerview"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/project_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/add_project_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/project_recyclerview"
+            android:layout_alignRight="@+id/project_recyclerview"
+            android:layout_alignBottom="@+id/project_recyclerview"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="48dp"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/add_main_color" />
+    </RelativeLayout>
+
 
 
 </LinearLayout>
