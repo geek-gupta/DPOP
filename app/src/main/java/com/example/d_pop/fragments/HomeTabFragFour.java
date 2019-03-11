@@ -21,6 +21,7 @@ import com.example.d_pop.R;
 import com.example.d_pop.activity.AddProjectActivity;
 import com.example.d_pop.adapter.ProjectBaseAdapter;
 import com.example.d_pop.model.ProjectBaseModel;
+import com.example.d_pop.model.ProjectCategoryBaseModel;
 import com.example.d_pop.network.GetAPIServices;
 import com.example.d_pop.network.RetrofitAPIClient;
 
@@ -38,6 +39,7 @@ public class HomeTabFragFour extends Fragment implements AdapterView.OnItemSelec
     private ArrayList<ProjectBaseModel> mProjectBaseModelArrayList;
     private RecyclerView mRecyclerView;
     private FloatingActionButton mFloatingButton;
+    private String[] categories;
 
     @Nullable
     @Override
@@ -46,18 +48,10 @@ public class HomeTabFragFour extends Fragment implements AdapterView.OnItemSelec
         View view =  inflater.inflate(R.layout.home_tab_frag_four, container, false);
         spinner = view.findViewById(R.id.project_spinner);
         mFloatingButton = view.findViewById(R.id.add_project_button);
-        List<String> categories = new ArrayList<>();
-        categories.add("All");
-        categories.add("Big Data");
-        categories.add("Android");
-        categories.add("Web Technology");
-        categories.add("AI");
-        categories.add("Data Science");
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, categories);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
+        this.getAllCategories();
         spinner.setOnItemSelectedListener(this);
+
         mProjectBaseModelArrayList = new ArrayList<>();
         mRecyclerView = view.findViewById(R.id.project_recyclerview);
 
@@ -94,7 +88,6 @@ public class HomeTabFragFour extends Fragment implements AdapterView.OnItemSelec
                     getAllProjects("All");
                     spinner.setSelection(0);
                 }else {
-                    Log.i("Projects", "onResponse: " + response.body());
                     mProjectBaseModelArrayList = response.body();
                     mProjectBaseAdapter = new ProjectBaseAdapter(mProjectBaseModelArrayList, getContext());
                     mRecyclerView.setAdapter(mProjectBaseAdapter);
@@ -109,6 +102,31 @@ public class HomeTabFragFour extends Fragment implements AdapterView.OnItemSelec
         });
     }
 
+    private void getAllCategories() {
+        GetAPIServices service = RetrofitAPIClient.getRetrofitInstance().create(GetAPIServices.class);
+        Call<ProjectCategoryBaseModel> call = service.getAllCategories();
+        call.enqueue(new Callback<ProjectCategoryBaseModel>() {
+            @Override
+            public void onResponse(Call<ProjectCategoryBaseModel> call, Response<ProjectCategoryBaseModel> response) {
+
+                List<String> categories = new ArrayList<>();
+                categories.add("All");
+                for(String ele: response.body().getCategories()){
+                    categories.add(ele);
+                }
+                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, categories);
+                dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(dataAdapter);
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ProjectCategoryBaseModel> call, Throwable t) {
+                Toast.makeText(getContext(), "Retrofit Failure", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 //    GetAPIServices service = RetrofitAPIClient.getRetrofitInstance().create(GetAPIServices.class);
 //        Call<ArrayList<ProjectBaseModel>> call = service.getAllProjects();
 //        call.enqueue(new Callback<ArrayList<ProjectBaseModel>>() {

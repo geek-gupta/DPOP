@@ -2,6 +2,7 @@ package com.example.d_pop.network;
 
 import com.example.d_pop.model.LoginModel;
 import com.example.d_pop.model.ProjectBaseModel;
+import com.example.d_pop.model.ProjectCategoryBaseModel;
 
 import java.util.ArrayList;
 
@@ -12,6 +13,8 @@ import retrofit2.http.Query;
 
 public interface GetAPIServices {
 
+    @GET("/getAllCategories")
+    Call<ProjectCategoryBaseModel> getAllCategories();
 
     @GET("/getallprojects")
     Call<ArrayList<ProjectBaseModel>> getAllProjects(@Query("projectType") String projectType);
