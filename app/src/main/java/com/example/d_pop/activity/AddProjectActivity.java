@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.d_pop.R;
-import com.jaredrummler.materialspinner.MaterialSpinner;
 
 public class AddProjectActivity extends AppCompatActivity {
 
@@ -20,14 +19,7 @@ public class AddProjectActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Add Project");
 
-        MaterialSpinner spinner = (MaterialSpinner) findViewById(R.id.mentor_spinner);
-        spinner.setItems("Ice Cream Sandwich", "Jelly Bean", "KitKat", "Lollipop", "Marshmallow");
-        spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
 
-            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-                Snackbar.make(view, "Clicked " + item, Snackbar.LENGTH_LONG).show();
-            }
-        });
     }
 
     @Override
