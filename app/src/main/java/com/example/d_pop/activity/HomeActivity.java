@@ -35,9 +35,9 @@ public class HomeActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabLayout);
 
         adapter = new HomeTabAdapter(getSupportFragmentManager());
-        adapter.addFragment(new HomeTabFragFour(), "Project");
         adapter.addFragment(new HomeTabFragOne(), "Query");
-        adapter.addFragment(new HomeTabFragTwo(), "Notice");
+        adapter.addFragment(new HomeTabFragFour(), "Project");
+        adapter.addFragment(new HomeTabFragTwo(), "Notes");
         adapter.addFragment(new HomeTabFragThree(), "Attendance");
 
 
