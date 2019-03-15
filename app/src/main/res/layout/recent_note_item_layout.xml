@@ -14,9 +14,10 @@
     <TextView
         android:id="@+id/recent_notes_pdf_name_text_view"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:hint="pdf name"
         android:paddingTop="5dp"
+        android:textColor="@color/colorWhite"
         android:maxLines="2"
         android:textAlignment="center"
         android:layout_gravity="center|center_vertical"/>

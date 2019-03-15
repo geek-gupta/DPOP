@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="20dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="16dp"
+    android:background="@drawable/edit_text_background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/top_left_right_round"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/notes_pdf_name_text_View"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:text="Learn How To Code"
+            android:textColor="#ffffff"
+            android:paddingLeft="20dp"
+            android:gravity="center_vertical"/>
+        <ImageButton
+            android:id="@+id/notes_rating_image_view"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:background="@android:color/transparent"
+            android:src="@drawable/star"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/notes_added_by_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:text="Added By: Gaurav and Lokesh"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/notes_added_on_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        android:text="Owned by: Gaurav and Lokesh"/>
+
+
+
+
+</LinearLayout>
+

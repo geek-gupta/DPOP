@@ -12,7 +12,7 @@
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:text="Android"
-       android:background="@drawable/edit_text_background"
+       android:background="@drawable/rounded_background_white_border"
        android:textSize="20sp"
        android:gravity="center"/>
 </LinearLayout>

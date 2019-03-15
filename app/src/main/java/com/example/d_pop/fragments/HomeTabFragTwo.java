@@ -10,20 +10,25 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.d_pop.R;
 import com.example.d_pop.adapter.NotesBaseAdapter;
 import com.example.d_pop.adapter.RecentNoteAdapter;
-import com.example.d_pop.model.NotesBaseModel;
+import com.example.d_pop.model.NotesBaseCategoryModel;
 import com.example.d_pop.model.RecentNotesModel;
+import com.example.d_pop.network.GetAPIServices;
+import com.example.d_pop.network.RetrofitAPIClient;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeTabFragTwo extends Fragment {
 
     private RecyclerView mNotesRecyclerView, mRecentNotesRecyclerView;
-    private ArrayList<NotesBaseModel> mNotesBaseModel;
-    private ArrayList<RecentNotesModel> mRecentNotesModel;
     private NotesBaseAdapter mNotesBaseAdapter;
     private RecentNoteAdapter mRecentNoteAdapter;
 
@@ -36,39 +41,61 @@ public class HomeTabFragTwo extends Fragment {
 
         mNotesRecyclerView = view.findViewById(R.id.notes_recycler_view);
         mRecentNotesRecyclerView = view.findViewById(R.id.recent_notes_recycler_view);
-        mNotesBaseModel = new ArrayList<>();
-        mNotesBaseModel.add(new NotesBaseModel("Android"));
-        mNotesBaseModel.add(new NotesBaseModel("Big Data"));
-        mNotesBaseModel.add(new NotesBaseModel("AI"));
-        mNotesBaseModel.add(new NotesBaseModel("Data Science"));
-        mNotesBaseModel.add(new NotesBaseModel("Machine Learning"));
-        mNotesBaseModel.add(new NotesBaseModel("Data Mining"));
-        mNotesBaseModel.add(new NotesBaseModel("Hadoop"));
-        mNotesBaseModel.add(new NotesBaseModel("Web Technologies"));
 
-        mNotesBaseAdapter = new NotesBaseAdapter(mNotesBaseModel, getContext());
-
-
-//        mNotesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mNotesRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
-        mNotesRecyclerView.setAdapter(mNotesBaseAdapter);
-
-
-        mRecentNotesModel = new ArrayList<>();
-        mRecentNotesModel.add(new RecentNotesModel("Learn to Make Apps"));
-        mRecentNotesModel.add(new RecentNotesModel("Build Games"));
-        mRecentNotesModel.add(new RecentNotesModel("Learn Python"));
-        mRecentNotesModel.add(new RecentNotesModel("Bits and Bytes"));
-        mRecentNotesModel.add(new RecentNotesModel("Server Programming"));
-        mRecentNotesModel.add(new RecentNotesModel("Pair Programming"));
-        mRecentNotesModel.add(new RecentNotesModel("Learn Programming"));
-
-
-        mRecentNoteAdapter = new RecentNoteAdapter(mRecentNotesModel, getContext());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        mRecentNotesRecyclerView.setLayoutManager(linearLayoutManager);
-        mRecentNotesRecyclerView.setAdapter(mRecentNoteAdapter);
+        getNotesBaseCategories();
+        getRecentNotesList();
 
         return  view;
+    }
+
+    private void getNotesBaseCategories() {
+        GetAPIServices service = RetrofitAPIClient.getRetrofitInstance().create(GetAPIServices.class);
+        Call<NotesBaseCategoryModel> call = service.getNotesBaseCategories();
+        call.enqueue(new Callback<NotesBaseCategoryModel>() {
+            @Override
+            public void onResponse(Call<NotesBaseCategoryModel> call, Response<NotesBaseCategoryModel> response) {
+
+                ArrayList<String> categories = new ArrayList<>();
+                for(String ele: response.body().getBaseCategories()){
+                    categories.add(ele);
+                }
+
+                mNotesBaseAdapter = new NotesBaseAdapter(categories, getContext());
+
+                mNotesRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+                mNotesRecyclerView.setAdapter(mNotesBaseAdapter);
+
+            }
+
+            @Override
+            public void onFailure(Call<NotesBaseCategoryModel> call, Throwable t) {
+                Toast.makeText(getContext(), "Retrofit Failure", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void getRecentNotesList() {
+        GetAPIServices service = RetrofitAPIClient.getRetrofitInstance().create(GetAPIServices.class);
+        Call<RecentNotesModel> call = service.getRecentNotesList();
+        call.enqueue(new Callback<RecentNotesModel>() {
+            @Override
+            public void onResponse(Call<RecentNotesModel> call, Response<RecentNotesModel> response) {
+
+                ArrayList<String> recentNotesList = new ArrayList<>();
+                for(String ele: response.body().getRecentNoteName()){
+                    recentNotesList.add(ele);
+                }
+
+                mRecentNoteAdapter = new RecentNoteAdapter(recentNotesList, getContext());
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+                mRecentNotesRecyclerView.setLayoutManager(linearLayoutManager);
+                mRecentNotesRecyclerView.setAdapter(mRecentNoteAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<RecentNotesModel> call, Throwable t) {
+                Toast.makeText(getContext(), "Retrofit Failure", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

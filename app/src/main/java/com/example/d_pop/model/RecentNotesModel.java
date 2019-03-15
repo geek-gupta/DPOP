@@ -1,17 +1,14 @@
 package com.example.d_pop.model;
 
 public class RecentNotesModel {
-    private String recentNoteName;
+    private String[] recentNotesList;
 
-    public String getRecentNoteName() {
-        return recentNoteName;
+    public String[] getRecentNoteName() {
+        return recentNotesList;
     }
 
-    public void setRecentNoteName(String recentNoteName) {
-        this.recentNoteName = recentNoteName;
-    }
 
-    public RecentNotesModel(String recentNoteName) {
-        this.recentNoteName = recentNoteName;
+    public RecentNotesModel(String[] recentNoteName) {
+        this.recentNotesList = recentNoteName;
     }
 }

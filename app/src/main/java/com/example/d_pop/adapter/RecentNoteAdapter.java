@@ -9,16 +9,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.d_pop.R;
-import com.example.d_pop.model.RecentNotesModel;
 
 import java.util.ArrayList;
 
 public class RecentNoteAdapter extends RecyclerView.Adapter<RecentNoteAdapter.ViewHolder>{
 
-    private ArrayList<RecentNotesModel> mRecentNotesModel;
+    private ArrayList<String> mRecentNotesModel;
     private Context context;
 
-    public RecentNoteAdapter(ArrayList<RecentNotesModel> mRecentNotesModel, Context context) {
+    public RecentNoteAdapter(ArrayList<String> mRecentNotesModel, Context context) {
         this.mRecentNotesModel = mRecentNotesModel;
         this.context = context;
     }
@@ -32,7 +31,7 @@ public class RecentNoteAdapter extends RecyclerView.Adapter<RecentNoteAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.mRecentNotesTextView.setText(mRecentNotesModel.get(i).getRecentNoteName());
+        viewHolder.mRecentNotesTextView.setText(mRecentNotesModel.get(i));
     }
 
     @Override
