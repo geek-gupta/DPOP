@@ -33,4 +33,7 @@ public interface GetAPIServices {
 
     @GET("/getNotes")
     Call<ArrayList<NotesSubCategoryModel>> getNotes(@Query("category") String categoryType);
+
+    @GET("/getPDF")
+    Call<ResponseBody> getPDF(@Query("pdfName") String pdfName);
 }

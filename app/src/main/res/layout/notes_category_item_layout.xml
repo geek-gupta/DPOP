@@ -28,35 +28,47 @@
             android:paddingLeft="20dp"
             android:gravity="center_vertical"/>
         <ImageButton
+            android:id="@+id/notes_download_pdf_file"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_file_download_black_24dp"
+            android:layout_height="match_parent" />
+        <ImageButton
             android:id="@+id/notes_rating_image_view"
             android:layout_width="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:background="@android:color/transparent"
             android:src="@drawable/star"
             android:layout_height="match_parent" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/notes_added_by_text_view"
+    <LinearLayout
+        android:id="@+id/show_pdf_file_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingRight="20dp"
-        android:text="Added By: Gaurav and Lokesh"
-        android:textSize="16sp" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/notes_added_on_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingBottom="10dp"
-        android:text="Owned by: Gaurav and Lokesh"/>
+        <TextView
+            android:id="@+id/notes_added_by_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:text="Added By: Gaurav and Lokesh"
+            android:textSize="16sp" />
 
+        <TextView
+            android:id="@+id/notes_added_on_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:text="Owned by: Gaurav and Lokesh"/>
 
+    </LinearLayout>
 
 
 </LinearLayout>
