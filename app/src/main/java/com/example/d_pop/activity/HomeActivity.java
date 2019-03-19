@@ -1,10 +1,14 @@
 package com.example.d_pop.activity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.d_pop.adapter.HomeTabAdapter;
@@ -13,6 +17,7 @@ import com.example.d_pop.fragments.HomeTabFragFour;
 import com.example.d_pop.fragments.HomeTabFragOne;
 import com.example.d_pop.fragments.HomeTabFragThree;
 import com.example.d_pop.fragments.HomeTabFragTwo;
+import com.example.d_pop.utility.SaveSharedPreferences;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -40,9 +45,28 @@ public class HomeActivity extends AppCompatActivity {
         adapter.addFragment(new HomeTabFragTwo(), "Notes");
         adapter.addFragment(new HomeTabFragThree(), "Attendance");
 
-
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.home_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int  id = item.getItemId();
+        switch (id) {
+            case R.id.logout:
+                SaveSharedPreferences.setLoggedIn(getApplicationContext(), false);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -15,7 +15,9 @@ import com.example.d_pop.R;
 import com.example.d_pop.activity.HomeActivity;
 import com.example.d_pop.model.LoginModel;
 import com.example.d_pop.network.GetAPIServices;
+import com.example.d_pop.network.RetrofitAPICalls;
 import com.example.d_pop.network.RetrofitAPIClient;
+import com.example.d_pop.utility.SaveSharedPreferences;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -61,6 +63,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void init() {
         mActionBar = getSupportActionBar();
         mActionBar.hide();
+
+        if(SaveSharedPreferences.getLoggedStatus(getApplicationContext())) {
+            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override
@@ -75,27 +84,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.login_button:
-                GetAPIServices service = RetrofitAPIClient.getRetrofitInstance().create(GetAPIServices.class);
-                Call<LoginModel> call = service.attempLogin(userNameEditText.getText().toString(), passwordEditText.getText().toString(), isStudent  );
-                call.enqueue(new Callback<LoginModel>() {
-                    @Override
-                    public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
-
-                        if(response.body().isLoginSuccess()) {
-                            Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }else {
-                            Toast.makeText(LoginActivity.this, "Please Enter Valid Credentials", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<LoginModel> call, Throwable t) {
-                        Toast.makeText(LoginActivity.this, "Retrofit Failure in Login Screen", Toast.LENGTH_SHORT).show();
-                        Log.i("ResponseBody", "onResponse: " + t);
-                    }
-                });
+                RetrofitAPICalls.AttemptLogin(this, userNameEditText.getText().toString(), passwordEditText.getText().toString(), isStudent);
+                SaveSharedPreferences.setIsStudentStatus(this, isStudent);
                 break;
         }
 
