@@ -12,13 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.NotesSubCategoryActivity"></activity>
+        <activity android:name=".activity.ProfileActivity"></activity>
+        <activity android:name=".activity.NotesSubCategoryActivity" />
         <activity
             android:name=".activity.AddProjectActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
-        <activity android:name=".activity.HomeActivity">
-
-        </activity>
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".activity.HomeActivity"></activity>
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

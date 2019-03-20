@@ -66,7 +66,13 @@ public class HomeActivity extends AppCompatActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 break;
+
+            case R.id.hod_profile:
+                Toast.makeText(this, "HOD Profile", Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(this, ProfileActivity.class);
+                startActivity(intent1);
+                break;
         }
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 }
