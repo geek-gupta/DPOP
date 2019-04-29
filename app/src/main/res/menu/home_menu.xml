@@ -3,6 +3,7 @@
 
     <item android:id="@+id/profile" android:title="profile">
         <menu>
+            <item android:title="About Me" android:id="@+id/about_me_profile"></item>
             <item android:title="HOD" android:id="@+id/hod_profile"></item>
             <item android:title="Teachers" android:id="@+id/teachers_profile"></item>
         </menu>
