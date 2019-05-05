@@ -12,13 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.ProjectDetailsAndAlter">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".activity.BaseHomeActivity">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+        <activity android:name=".activity.ProjectDetailsAndAlter"></activity>
         <activity android:name=".activity.ProfileActivity" />
         <activity android:name=".activity.NotesSubCategoryActivity" />
         <activity
@@ -26,7 +23,11 @@
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".activity.HomeActivity" />
         <activity android:name=".activity.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

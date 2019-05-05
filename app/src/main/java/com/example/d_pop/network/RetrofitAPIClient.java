@@ -7,6 +7,10 @@ public class RetrofitAPIClient {
 
     private static Retrofit retrofit;
     private static final String BASE_URL = "http://192.168.43.116:9000";
+    //private static final String BASE_URL = "http://192.168.43.178:9000";
+    //private static final String BASE_URL = "http://192.168.43.116:9000";
+
+
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {

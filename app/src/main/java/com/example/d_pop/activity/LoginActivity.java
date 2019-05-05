@@ -65,8 +65,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mActionBar.hide();
 
         if(SaveSharedPreferences.getLoggedStatus(getApplicationContext())) {
-            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-
+            Intent intent = new Intent(getApplicationContext(), BaseHomeActivity.class);
             startActivity(intent);
             finish();
         }

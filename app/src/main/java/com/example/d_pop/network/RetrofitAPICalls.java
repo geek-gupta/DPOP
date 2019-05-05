@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.example.d_pop.activity.BaseHomeActivity;
 import com.example.d_pop.activity.HomeActivity;
 import com.example.d_pop.model.LoginModel;
 import com.example.d_pop.model.ProjectCategoryBaseModel;
@@ -30,7 +31,7 @@ public class RetrofitAPICalls {
 
                 if(response.body().isLoginSuccess()) {
                     SaveSharedPreferences.setLoggedIn(context.getApplicationContext(), true);
-                    Intent intent = new Intent(context.getApplicationContext(), HomeActivity.class);
+                    Intent intent = new Intent(context.getApplicationContext(), BaseHomeActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     context.startActivity(intent);
 

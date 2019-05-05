@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.BaseHomeActivity">
+
+    <ScrollView
+        android:id="@+id/base_home_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.chabbal.slidingdotsplash.SlidingSplashView
+                android:id="@+id/splash"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                app:imageResources="@array/img_id_arr"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:paddingRight="8dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/rounded_background_main_color_border"
+                android:text="Project Assigned :"
+                app:layout_constraintStart_toStartOf="@+id/splash"
+                app:layout_constraintTop_toBottomOf="@+id/splash" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/project_assigned_to_me_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/splash"
+                app:layout_constraintStart_toStartOf="@+id/splash"
+                app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            </android.support.v7.widget.RecyclerView>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/base_home_count_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/project_assigned_to_me_recycler_view"
+                app:layout_constraintStart_toStartOf="@+id/project_assigned_to_me_recycler_view"
+                app:layout_constraintTop_toBottomOf="@+id/project_assigned_to_me_recycler_view">
+
+            </android.support.v7.widget.RecyclerView>
+            
+
+
+        </android.support.constraint.ConstraintLayout>
+
+
+
+    </ScrollView>
+
+
+
+
+    <com.leinardi.android.speeddial.SpeedDialView
+        android:id="@+id/speedDial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_behavior="SpeedDialView"
+        app:sdMainFabClosedSrc="@drawable/ic_add_black_24dp" />
+
+</android.support.constraint.ConstraintLayout>

@@ -36,6 +36,7 @@ public class NotesSubCategoryActivity extends AppCompatActivity {
         mNotesSubCategoryModel = new ArrayList<>();
         intent = getIntent();
         String categoryType = intent.getStringExtra("categoryType");
+        getSupportActionBar().setTitle(categoryType + " Notes");
 
         getNotes(categoryType);
 

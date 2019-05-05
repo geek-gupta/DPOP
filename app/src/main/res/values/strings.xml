@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">D-POP</string>
     <string name="project_item_dummy_data">This app keeps you updated with whatever going on in your department. This is one of the s awesome app in the market.</string>
-    <string name="project_spinner">Please select one</string>
+
+    <integer-array name="img_id_arr">
+
+        <item>@drawable/nba_it_min</item>
+        <item>@drawable/banner_it_min</item>
+        <item>@drawable/leaders_banner_min</item>
+        <item>@drawable/honor_glbitm_min</item>
+    </integer-array>
 </resources>
