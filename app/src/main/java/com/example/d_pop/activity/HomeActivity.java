@@ -1,15 +1,12 @@
 package com.example.d_pop.activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.d_pop.adapter.HomeTabAdapter;
 import com.example.d_pop.R;
@@ -21,7 +18,7 @@ import com.example.d_pop.utility.SaveSharedPreferences;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private ActionBar mActionBar;
+
     private HomeTabAdapter adapter;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -70,6 +67,11 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.about_me_profile:
                 Intent intent1 = new Intent(this, ProfileActivity.class);
                 startActivity(intent1);
+                break;
+
+            case R.id.teachers_profile:
+                Intent intent2 = new Intent(this, TeachersProfileActivity.class);
+                startActivity(intent2);
                 break;
         }
         return true;

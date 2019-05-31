@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/query_item_parent_linear_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:backgroundTint="@color/colorPrimaryLight"
+    android:background="@drawable/rounded_background_white_border"
+    android:orientation="horizontal"
+    android:layout_margin="12dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Q. "
+        android:textSize="20sp"
+        android:textColor="#000"/>
+
+    <TextView
+        android:id="@+id/query_item_question_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This Is the dummy text.This Is the dummy text.This Is the dummy text."
+        android:textColor="#000"
+        android:textSize="18sp"/>
+
+</LinearLayout>

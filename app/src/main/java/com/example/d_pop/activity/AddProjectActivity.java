@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.d_pop.R;
+import com.example.d_pop.model.QueryModel;
 import com.example.d_pop.network.RetrofitAPICalls;
 
 import java.util.ArrayList;
@@ -49,6 +50,8 @@ public class AddProjectActivity extends AppCompatActivity {
                 dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 mDomainNameSpinner.setAdapter(dataAdapter);
             }
+
+
 
 
         });

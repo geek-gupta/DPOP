@@ -19,5 +19,6 @@ public class ProfileActivity extends AppCompatActivity {
         mProfileImageView = findViewById(R.id.profile_image_view);
 
         Glide.with(this).load(R.drawable.me).apply(RequestOptions.circleCropTransform()).into(mProfileImageView);
+        getSupportActionBar().hide();
     }
 }

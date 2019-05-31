@@ -5,6 +5,7 @@ import com.example.d_pop.model.NotesBaseCategoryModel;
 import com.example.d_pop.model.NotesSubCategoryModel;
 import com.example.d_pop.model.ProjectBaseModel;
 import com.example.d_pop.model.ProjectCategoryBaseModel;
+import com.example.d_pop.model.QueryModel;
 import com.example.d_pop.model.RecentNotesModel;
 
 import java.util.ArrayList;
@@ -36,4 +37,7 @@ public interface GetAPIServices {
 
     @GET("/getPDF")
     Call<ResponseBody> getPDF(@Query("pdfName") String pdfName);
+
+    @GET("/getQueries")
+    Call<ArrayList<QueryModel>> getAllQueries();
 }

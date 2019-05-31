@@ -2,13 +2,13 @@ package com.example.d_pop.model;
 
 public class ProjectBaseModel {
 
-   private String projectName;
-   private String ownerName;
-   private String creationTime;
-   private String shortDescription;
-   private int progress;
-   private boolean isFav;
-   private String projectType;
+    private String projectName;
+    private String ownerName;
+    private String creationTime;
+    private String shortDescription;
+    private int progress;
+    private boolean isFav;
+    private String projectType;
 
     public ProjectBaseModel(String projectName, String ownerName, String creationTime, String shortDescription, int progress, boolean isFav, String projectType) {
         this.projectName = projectName;

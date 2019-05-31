@@ -12,10 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.BaseHomeActivity">
-
-        </activity>
-        <activity android:name=".activity.ProjectDetailsAndAlter"></activity>
+        <activity android:name=".activity.TeachersProfileActivity"></activity>
+        <activity android:name=".activity.BaseHomeActivity"></activity>
+        <activity android:name=".activity.ProjectDetailsAndAlter" />
         <activity android:name=".activity.ProfileActivity" />
         <activity android:name=".activity.NotesSubCategoryActivity" />
         <activity

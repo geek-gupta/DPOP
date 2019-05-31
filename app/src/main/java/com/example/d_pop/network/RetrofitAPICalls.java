@@ -2,14 +2,17 @@ package com.example.d_pop.network;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.example.d_pop.activity.BaseHomeActivity;
 import com.example.d_pop.activity.HomeActivity;
+import com.example.d_pop.adapter.ProjectBaseAdapter;
 import com.example.d_pop.model.LoginModel;
 import com.example.d_pop.model.ProjectCategoryBaseModel;
+import com.example.d_pop.model.QueryModel;
 import com.example.d_pop.utility.SaveSharedPreferences;
 
 import java.util.ArrayList;
@@ -73,8 +76,10 @@ public class RetrofitAPICalls {
         });
     }
 
+
+
     public interface ResultInterface {
-        public void onCategoryDataLoad(List<String> data);
+         void onCategoryDataLoad(List<String> data);
     }
 
 
