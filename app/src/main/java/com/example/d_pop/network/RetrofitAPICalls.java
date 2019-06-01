@@ -24,7 +24,7 @@ import retrofit2.Response;
 
 public class RetrofitAPICalls {
 
-    public static void AttemptLogin(final Context context, String userName, String password, final boolean isStudent){
+    public static void AttemptLogin(final Context context, final String userName, String password, final boolean isStudent){
 
         GetAPIServices service = RetrofitAPIClient.getRetrofitInstance().create(GetAPIServices.class);
         Call<LoginModel> call = service.attempLogin(userName, password, isStudent  );
@@ -34,6 +34,7 @@ public class RetrofitAPICalls {
 
                 if(response.body().isLoginSuccess()) {
                     SaveSharedPreferences.setLoggedIn(context.getApplicationContext(), true);
+                    SaveSharedPreferences.setRollNumber(context.getApplicationContext(), userName);
                     Intent intent = new Intent(context.getApplicationContext(), BaseHomeActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     context.startActivity(intent);

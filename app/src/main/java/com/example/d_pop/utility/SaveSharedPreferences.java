@@ -40,4 +40,14 @@ public class SaveSharedPreferences {
     public static boolean getIsStudentStatus(Context context) {
         return getPreferences(context).getBoolean(IS_STUDENT, false);
     }
+
+    public static String getRollnumber(Context context) {
+        return getPreferences(context).getString(ROLL_NUMBER, "");
+    }
+
+    public static void setRollNumber(Context context, String rollnumber) {
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putString(ROLL_NUMBER, rollnumber);
+        editor.apply();
+    }
 }

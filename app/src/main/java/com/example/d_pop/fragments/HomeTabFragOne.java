@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +20,18 @@ import android.widget.Toast;
 import com.example.d_pop.R;
 import com.example.d_pop.adapter.ProjectBaseAdapter;
 import com.example.d_pop.adapter.QueryBaseAdapter;
+import com.example.d_pop.model.ProjectBaseModel;
+import com.example.d_pop.model.QueryAnswerModel;
 import com.example.d_pop.model.QueryModel;
 import com.example.d_pop.network.GetAPIServices;
 import com.example.d_pop.network.RetrofitAPICalls;
 import com.example.d_pop.network.RetrofitAPIClient;
+import com.example.d_pop.utility.PreferencesUtility;
+import com.example.d_pop.utility.SaveSharedPreferences;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -37,6 +46,7 @@ public class HomeTabFragOne extends Fragment {
     private ArrayList<QueryModel> mQueryModel;
     private QueryBaseAdapter mQueryBaseAdapter;
     private FloatingActionButton mAddQueryFloatingActionButton;
+    private int totalQuery;
 
 
     @Nullable
@@ -72,8 +82,12 @@ public class HomeTabFragOne extends Fragment {
                     }else {
                         mQueryModel = response.body();
                         mQueryBaseAdapter = new QueryBaseAdapter(mQueryModel, getContext());
+                        totalQuery = mQueryModel.size();
                         mQueryRecyclerView.setAdapter(mQueryBaseAdapter);
-                        mQueryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                        linearLayoutManager.setReverseLayout(true);
+                        linearLayoutManager.setStackFromEnd(true);
+                        mQueryRecyclerView.setLayoutManager(linearLayoutManager);
                     }
 
 
@@ -99,9 +113,7 @@ public class HomeTabFragOne extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             String query = String.valueOf(queryEditText.getText());
-                            if(query.length() > 0) {
-                                addQueryToDB();
-                            }
+                            addQueryToDB(query);
                         }
                     })
                     .setNegativeButton("Cancel", null)
@@ -109,9 +121,37 @@ public class HomeTabFragOne extends Fragment {
             dialog.show();
         }
 
-        private void addQueryToDB() {
-            QueryModel queryModel;
+        private void addQueryToDB(String query)  {
+            String rollnumber = SaveSharedPreferences.getRollnumber(getContext());
+            Toast.makeText(getContext(), rollnumber, Toast.LENGTH_SHORT).show();
+            String queryid = totalQuery + 1 + "";
+            ArrayList<String> images = new ArrayList<>();
+            ArrayList<QueryAnswerModel> answersModel = new ArrayList<>();
+            images.add("Abc.png");
+            QueryModel queryModel = new QueryModel(rollnumber, "Gaurav Kumar",queryid, query, images,  answersModel );
+
+
+            GetAPIServices service = RetrofitAPIClient.getRetrofitInstance().create(GetAPIServices.class);
+            Call<QueryModel> call = service.addQuery(queryModel);
+            call.enqueue(new Callback<QueryModel>() {
+                @Override
+                public void onResponse(Call<QueryModel> call, Response<QueryModel> response) {
+                    Toast.makeText(getContext(), "Query Added", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<QueryModel> call, Throwable t) {
+                    Toast.makeText(getContext(), "Query Not Added", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+
+
+
         }
+
+
 
 
 }

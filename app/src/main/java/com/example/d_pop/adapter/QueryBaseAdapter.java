@@ -10,9 +10,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.d_pop.R;
 import com.example.d_pop.activity.ProjectDetailsAndAlter;
+import com.example.d_pop.activity.QueryAnswerActivity;
 import com.example.d_pop.model.ProjectBaseModel;
 import com.example.d_pop.model.QueryModel;
 
@@ -38,8 +40,16 @@ public class QueryBaseAdapter extends RecyclerView.Adapter<QueryBaseAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         viewHolder.questionTextView.setText(mQueryBaseModel.get(i).getQuestion());
+        viewHolder.queryItemLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, QueryAnswerActivity.class);
+                intent.putExtra("QueryId",  mQueryBaseModel.get(i).getQueryId());
+                context.startActivity(intent);
+            }
+        });
     }
 
 
@@ -51,9 +61,11 @@ public class QueryBaseAdapter extends RecyclerView.Adapter<QueryBaseAdapter.View
 
     protected class ViewHolder extends RecyclerView.ViewHolder {
         private TextView questionTextView;
+        private LinearLayout queryItemLinearLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             questionTextView = itemView.findViewById(R.id.query_item_question_text_view);
+            queryItemLinearLayout = itemView.findViewById(R.id.query_item_parent_linear_layout);
         }
     }
 }

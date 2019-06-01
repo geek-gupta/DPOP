@@ -5,14 +5,19 @@ import com.example.d_pop.model.NotesBaseCategoryModel;
 import com.example.d_pop.model.NotesSubCategoryModel;
 import com.example.d_pop.model.ProjectBaseModel;
 import com.example.d_pop.model.ProjectCategoryBaseModel;
+import com.example.d_pop.model.QueryAnswerModel;
 import com.example.d_pop.model.QueryModel;
 import com.example.d_pop.model.RecentNotesModel;
 
 import java.util.ArrayList;
 
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface GetAPIServices {
@@ -40,4 +45,11 @@ public interface GetAPIServices {
 
     @GET("/getQueries")
     Call<ArrayList<QueryModel>> getAllQueries();
+
+    @Headers("Content-Type: application/json")
+    @POST("/addQuery")
+    Call<QueryModel> addQuery(@Body QueryModel jsonBody);
+
+    @GET("/getAnswerByQueryId")
+    Call<ArrayList<QueryAnswerModel>> getAnswerByQueryId(@Query("queryId") String queryId);
 }
