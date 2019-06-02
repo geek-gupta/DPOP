@@ -18,20 +18,12 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.d_pop.R;
-import com.example.d_pop.adapter.ProjectBaseAdapter;
 import com.example.d_pop.adapter.QueryBaseAdapter;
-import com.example.d_pop.model.ProjectBaseModel;
 import com.example.d_pop.model.QueryAnswerModel;
 import com.example.d_pop.model.QueryModel;
 import com.example.d_pop.network.GetAPIServices;
-import com.example.d_pop.network.RetrofitAPICalls;
 import com.example.d_pop.network.RetrofitAPIClient;
-import com.example.d_pop.utility.PreferencesUtility;
 import com.example.d_pop.utility.SaveSharedPreferences;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -123,7 +115,6 @@ public class HomeTabFragOne extends Fragment {
 
         private void addQueryToDB(String query)  {
             String rollnumber = SaveSharedPreferences.getRollnumber(getContext());
-            Toast.makeText(getContext(), rollnumber, Toast.LENGTH_SHORT).show();
             String queryid = totalQuery + 1 + "";
             ArrayList<String> images = new ArrayList<>();
             ArrayList<QueryAnswerModel> answersModel = new ArrayList<>();

@@ -9,6 +9,7 @@ public class ProjectBaseModel {
     private int progress;
     private boolean isFav;
     private String projectType;
+    private String rollnumber;
 
     public ProjectBaseModel(String projectName, String ownerName, String creationTime, String shortDescription, int progress, boolean isFav, String projectType) {
         this.projectName = projectName;
@@ -18,6 +19,21 @@ public class ProjectBaseModel {
         this.progress = progress;
         this.isFav = isFav;
         this.projectType = projectType;
+    }
+
+    public ProjectBaseModel(String projectName, String ownerName, String creationTime, String shortDescription, int progress, boolean isFav, String projectType, String rollnumber) {
+        this.projectName = projectName;
+        this.ownerName = ownerName;
+        this.creationTime = creationTime;
+        this.shortDescription = shortDescription;
+        this.progress = progress;
+        this.isFav = isFav;
+        this.projectType = projectType;
+        this.rollnumber = rollnumber;
+    }
+
+    public String getRollnumber() {
+        return rollnumber;
     }
 
     public boolean isFav() {

@@ -1,5 +1,6 @@
 package com.example.d_pop.network;
 
+import com.example.d_pop.model.AddQueryAnswerModel;
 import com.example.d_pop.model.LoginModel;
 import com.example.d_pop.model.NotesBaseCategoryModel;
 import com.example.d_pop.model.NotesSubCategoryModel;
@@ -52,4 +53,10 @@ public interface GetAPIServices {
 
     @GET("/getAnswerByQueryId")
     Call<ArrayList<QueryAnswerModel>> getAnswerByQueryId(@Query("queryId") String queryId);
+
+    @POST("/addProject")
+    Call<ProjectBaseModel> addProjectData(@Body ProjectBaseModel projectData);
+
+    @POST("/addAnswerToQuery")
+    Call<AddQueryAnswerModel> addAnswerToQuery(@Body AddQueryAnswerModel answerData);
 }

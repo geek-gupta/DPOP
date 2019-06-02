@@ -8,14 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.d_pop.R;
-import com.example.d_pop.activity.ProjectDetailsAndAlter;
 import com.example.d_pop.activity.QueryAnswerActivity;
-import com.example.d_pop.model.ProjectBaseModel;
 import com.example.d_pop.model.QueryModel;
 
 import java.util.ArrayList;

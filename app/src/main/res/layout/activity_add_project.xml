@@ -16,6 +16,7 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/project_name_text_view"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
@@ -116,19 +117,20 @@
         </RelativeLayout>
 
         <EditText
+            android:id="@+id/project_sub_description"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginTop="12dp"
             android:padding="5dp"
             android:inputType="text|textMultiLine"
-            android:hint="Project Sub-Heading"
+            android:hint="Project Short Description"
             android:gravity="top"
             android:textCursorDrawable="@drawable/cursor_color"
             android:background="@drawable/edit_text_background"/>
 
 
         <Button
-            android:id="@+id/login_button"
+            android:id="@+id/project_add_button"
             android:layout_width="match_parent"
             android:layout_marginTop="40dp"
             android:layout_marginLeft="40dp"
